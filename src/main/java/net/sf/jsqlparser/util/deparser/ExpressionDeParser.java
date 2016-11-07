@@ -197,7 +197,7 @@ public class ExpressionDeParser implements ExpressionVisitor, ItemsListVisitor {
 
     @Override
     public void visit(RLikeExpression rlikeExpression) {
-        visitBinaryExpression(rlikeExpression, rlikeExpression.isCaseInsensitive() ? " ILIKE " : " LIKE ");
+        visitBinaryExpression(rlikeExpression, rlikeExpression.isCaseInsensitive() ? " IRLIKE " : " RLIKE ");
         String escape = rlikeExpression.getEscape();
         if (escape != null) {
             buffer.append(" ESCAPE '").append(escape).append('\'');
