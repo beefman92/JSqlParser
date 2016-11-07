@@ -124,6 +124,8 @@ TOKEN: /* SQL Keywords. prefixed with K_ to avoid name clashes */
 |   <K_NULL:"NULL">
 |   <K_LIKE:"LIKE">
 |   <K_ILIKE:"ILIKE">
+|   <K_RLIKE:"RLIKE">
+|   <K_IRLIKE:"IRLIKE">
 |   <K_DROP:"DROP">
 |   <K_JOIN:"JOIN">
 |   <K_LEFT:"LEFT">
@@ -1553,6 +1555,23 @@ Expression LikeExpression() :
 {
 	leftExpression=SimpleExpression()
     [<K_NOT> { result.setNot(true); } ] ( <K_LIKE> | <K_ILIKE> { result.setCaseInsensitive(true); } ) rightExpression=SimpleExpression()
+    [<K_ESCAPE> token=<S_CHAR_LITERAL> { result.setEscape((new StringValue(token.image)).getValue()); }]
+	{
+		result.setLeftExpression(leftExpression);
+		result.setRightExpression(rightExpression);
+		return result;
+	}
+}
+
+Expression RLikeExpression() :
+{
+	RLikeExpression result = new RLikeExpression();
+	Expression leftExpression = null;
+	Expression rightExpression = null;
+}
+{
+	leftExpression=SimpleExpression()
+    [<K_NOT> { result.setNot(true); } ] ( <K_RLIKE> | <K_IRLIKE> { result.setCaseInsensitive(true); } ) rightExpression=SimpleExpression()
     [<K_ESCAPE> token=<S_CHAR_LITERAL> { result.setEscape((new StringValue(token.image)).getValue()); }]
 	{
 		result.setLeftExpression(leftExpression);

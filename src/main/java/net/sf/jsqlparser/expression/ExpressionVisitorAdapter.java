@@ -190,6 +190,11 @@ public class ExpressionVisitorAdapter implements ExpressionVisitor, ItemsListVis
     }
 
     @Override
+    public void visit(RLikeExpression expr) {
+        visitBinaryExpression(expr);
+    }
+
+    @Override
     public void visit(MinorThan expr) {
         visitBinaryExpression(expr);
     }

@@ -259,6 +259,11 @@ public class TablesNamesFinder implements SelectVisitor, FromItemVisitor, Expres
     }
 
     @Override
+    public void visit(RLikeExpression rlikeExpression) {
+        visitBinaryExpression(rlikeExpression);
+    }
+
+    @Override
     public void visit(ExistsExpression existsExpression) {
         existsExpression.getRightExpression().accept(this);
     }

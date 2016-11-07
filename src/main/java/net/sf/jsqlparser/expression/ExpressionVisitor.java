@@ -40,6 +40,7 @@ import net.sf.jsqlparser.expression.operators.relational.GreaterThanEquals;
 import net.sf.jsqlparser.expression.operators.relational.InExpression;
 import net.sf.jsqlparser.expression.operators.relational.IsNullExpression;
 import net.sf.jsqlparser.expression.operators.relational.LikeExpression;
+import net.sf.jsqlparser.expression.operators.relational.RLikeExpression;
 import net.sf.jsqlparser.expression.operators.relational.Matches;
 import net.sf.jsqlparser.expression.operators.relational.MinorThan;
 import net.sf.jsqlparser.expression.operators.relational.MinorThanEquals;
@@ -102,6 +103,8 @@ public interface ExpressionVisitor {
 	void visit(IsNullExpression isNullExpression);
 
 	void visit(LikeExpression likeExpression);
+
+	void visit(RLikeExpression rlikeExpression);
 
 	void visit(MinorThan minorThan);
 
